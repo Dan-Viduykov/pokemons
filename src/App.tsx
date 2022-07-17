@@ -1,10 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import FavoritesPage from "./pages/FavoritesPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
-    <h1>Pokemon`s</h1>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/favorites" element={<FavoritesPage />} />
+    </Routes>
   );
 }
 
