@@ -1,0 +1,19 @@
+.dropdown {
+    max-width: 500px;
+    padding: 10px 5px;
+    border: 2px solid var(--black); 
+    border-radius: 0.5em;
+    list-style: none;
+
+    &__item {
+        padding: 5px 10px;
+        border: 1px solid var(--black);
+        border-radius: 0.5em;
+        cursor: pointer;
+        transition: .2s;
+
+        &:hover {
+            background-color: rgba(#000, 0.15);
+        }
+    }
+}
