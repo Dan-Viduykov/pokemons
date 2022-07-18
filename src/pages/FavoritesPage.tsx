@@ -6,7 +6,7 @@ const FavoritesPage: FC = () => {
     return (
         <Layout>
             <Container>
-            FavoritesPage    
+                FavoritesPage    
             </Container>
         </Layout>
     )

@@ -9,7 +9,7 @@ interface TitleProps {
 
 const Title: FC<TitleProps> = ({ Tag = 'h3', children, className }) => {
     return (
-        <Tag className={`${Tag} ${className}`}>{children}</Tag>
+        <Tag className={`${styles.title} ${Tag} ${className}`}>{children}</Tag>
     )
 }
 

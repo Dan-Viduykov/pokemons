@@ -1,19 +1,46 @@
 .header {
     background: var(--blue);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 4%;
+    padding: 0;
+    
+    &__container {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
     &__title {
         
     }
 
     &__nav {
-
+        display: flex;
+        align-items: center;
     }
 
-    &__link {
+    &__link {   
+        padding: 5px 15px;
+        background: var(--orange);
+        border-radius: 0.5em;
+        box-shadow: 2px 2px 5px 1px rgba(#000000, 0.5);
+        color: #000;
+        text-decoration: none;
+        font-size: 20px;
+        transition: .2s;
+        
+        &:active {
+            transform: scale(1.05);
+            box-shadow: 3px 3px 4.5px 1px rgba(#000000, 0.5);
+        }
+        
+        &:hover {
+            transform: scale(1.1);
+            box-shadow: 4px 4px 4px 1px rgba(#000000, 0.5);
+        }
 
+        &:first-child {
+            margin-right: 40px;
+        }
     }
 }
