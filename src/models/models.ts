@@ -1,9 +1,9 @@
-export interface IPokemon {
+export interface ILinkPokemon {
     name: string;
     url: string;
 }
 
-export interface ResponseServer<T> {
+export interface PokemonsResponse<T> {
     count: number;
     next: string;
     previous: string;

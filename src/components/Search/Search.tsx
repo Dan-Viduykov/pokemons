@@ -1,6 +1,6 @@
 import { FC, useState } from "react";
 import { useDebounce } from "../../hooks/debounce";
-import { useGetPokemonQuery, useGetPokemonsQuery } from "../../services/pokemon.api";
+import { useGetPokemonQuery } from "../../services/pokemon.api";
 import Dropdown from "../Dropdown";
 import styles from "./Search.module.scss";
 
@@ -9,14 +9,12 @@ interface SearchProps {
 }
 
 const Search: FC<SearchProps> = ({ className }) => {
-    const [ search, setSearch ] = useState('');
+    const [ search, setSearch ] = useState('pikachu');
     const debounce = useDebounce(search);
 
-    const { isLoading: pokemonLoading, isError: pokemonError, data: pokemon} = useGetPokemonQuery(debounce, {
+    const { isLoading: pokemonLoading, isError: pokemonError, data: pokemonLink} = useGetPokemonQuery(debounce, {
         skip: debounce.length < 2
     });
-    console.log(pokemon);
-    // const { isLoading: pokemonsLoading, isError: pokemonsError, data: pokemons} = useGetPokemonsQuery(15);
 
     return (
         <div className={`${styles.search} ${className}`}>
@@ -25,7 +23,7 @@ const Search: FC<SearchProps> = ({ className }) => {
                 type="text"
                 value={search}
                 onChange={e => setSearch(e.target.value)} />
-            <Dropdown />
+            { pokemonLink && <Dropdown pokemon={pokemonLink} />}
         </div>
     )
 }

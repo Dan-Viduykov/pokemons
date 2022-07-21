@@ -1,13 +1,13 @@
 import styles from "./HomeScreen.module.scss";
 import { FC } from "react";
-import PokemonCard from "../../PokemonCard";
 import Search from "../../Search";
+import PokemonShort from "../../PokemonShort";
 
 const HomeScreen: FC = () => {
     return (
         <div className={styles.home}>
             <Search className={styles.home__search} />
-            <PokemonCard className={styles.home__pokemon} />
+            <PokemonShort className={styles.home__pokemon} />
         </div>
     )
 }

@@ -1,26 +1,17 @@
 import { FC } from "react";
+import { IPokemon } from "../../models/pokemon";
 import styles from "./Dropdown.module.scss";
+import DropdownItem from "./DropdownItem";
 
 interface DropdownProps {
     className?: string;
+    pokemon: IPokemon;
 }
 
-const Dropdown: FC<DropdownProps> = ({ className }) => {
-
-    const createItem = () => {
-        return (
-            <li
-                onClick={() => {}}
-                className={styles.dropdown__item}
-                >
-                Dropdown
-            </li>
-        )
-    }
-
+const Dropdown: FC<DropdownProps> = ({ className, pokemon }) => {
     return (
         <ul className={`${styles.dropdown} ${className}`}>
-            {createItem()}
+            <DropdownItem pokemon={pokemon} />
         </ul>
     )
 }
