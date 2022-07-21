@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useParams } from "react-router-dom";
 import { useGetPokemonQuery } from "../../../services/pokemon.api";
+import Rating from "../../Rating";
 import Text from "../../Text";
 import Title from "../../Title";
 import styles from "./PokemonCard.module.scss";
@@ -35,7 +36,7 @@ const PokemonCard: FC<PokemonCardProps> = ({ className }) => {
                                 key={stat.stat.url}
                                 className={styles.pokemon__stat}>
                                 <span>{stat.stat.name}</span>
-                                {stat.base_stat}
+                                <Rating value={stat.base_stat} />
                             </li>)
                     })}
                 </ul>
