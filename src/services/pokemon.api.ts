@@ -7,7 +7,7 @@ export const pokemonApi = createApi({
     baseQuery: fetchBaseQuery({baseUrl: 'https://pokeapi.co/api/v2/'}),
     tagTypes: ['PokemonLink', 'Pokemon'],
     endpoints: build => ({
-        getPokemons: build.query<PokemonsResponse<ILinkPokemon>, number>({
+        getPokemons: build.query<string[], number>({
             query: (limit: number = 20, offset: number = 0) => ({
                 url: 'pokemon/',
                 params: {
@@ -16,6 +16,7 @@ export const pokemonApi = createApi({
                     offset: offset
                 }
             }),
+            transformResponse: (response: PokemonsResponse<ILinkPokemon>) => response.results.map(result => result.name),
         }),
         getPokemon: build.query<IPokemon, string>({
             query: (name: string) => `pokemon/${name}`
