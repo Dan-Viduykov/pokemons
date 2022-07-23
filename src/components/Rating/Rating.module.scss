@@ -22,7 +22,7 @@
 
         &::before {
             height: 100%;
-            width: 100%;
+            width: 0%;
             content: '★★★★★★★★★★';
             position: absolute;
             top: 0;
@@ -47,7 +47,7 @@
     }
 
     &__value {
-        font-size: 20   px;
+        font-size: 20px;
         line-height: 1;
         padding-left: 10px;
     }

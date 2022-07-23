@@ -2,6 +2,7 @@ import { FC } from "react";
 import { useAppDispatch } from "../../hooks/redux";
 import { useGetPokemonsQuery } from "../../services/pokemon.api";
 import { AppSlice } from "../../store/pokemon.slice";
+import Empty from "../Empty";
 import Text from "../Text";
 import styles from "./Dropdown.module.scss";
 
@@ -36,7 +37,13 @@ const Dropdown: FC<DropdownProps> = ({ className, value }) => {
 
     return (
         <ul className={`${styles.dropdown} ${className}`}>
-            { data && filteredNames(data).map(name => createItem(name)) }
+            {
+                data ? 
+                    filteredNames(data).length > 0 ?
+                        filteredNames(data).map(name => createItem(name)) :
+                        <Empty className={styles.dropdown__empty} /> :
+                null
+            }
         </ul>
     )
 }

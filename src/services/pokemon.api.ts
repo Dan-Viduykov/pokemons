@@ -1,6 +1,7 @@
 import { IPokemon } from './../models/pokemon';
 import { ILinkPokemon, PokemonsResponse } from './../models/models';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import { PokemonOptions } from '../models/pokemonOptions';
 
 export const pokemonApi = createApi({
     reducerPath: 'pokemon/api',
@@ -21,10 +22,10 @@ export const pokemonApi = createApi({
         getPokemon: build.query<IPokemon, string>({
             query: (name: string) => `pokemon/${name}`
         }),
-        getPokemonDescription: build.query<any, string>({
+        getPokemonDescription: build.query<PokemonOptions, string>({
             query: (name: string) => `https://pokeapi.co/api/v2/pokemon-species/${name}/`
         })
     })
 })
 
-export const { useGetPokemonQuery, useGetPokemonsQuery, useLazyGetPokemonDescriptionQuery } = pokemonApi
+export const { useGetPokemonQuery, useGetPokemonsQuery, useGetPokemonDescriptionQuery } = pokemonApi
