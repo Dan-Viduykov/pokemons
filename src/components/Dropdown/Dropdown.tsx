@@ -1,0 +1,44 @@
+import { FC } from "react";
+import { useAppDispatch } from "../../hooks/redux";
+import { useGetPokemonsQuery } from "../../services/pokemon.api";
+import { AppSlice } from "../../store/pokemon.slice";
+import Text from "../Text";
+import styles from "./Dropdown.module.scss";
+
+interface DropdownProps {
+    className?: string;
+    value: string;
+}
+
+const Dropdown: FC<DropdownProps> = ({ className, value }) => {
+    const { data } = useGetPokemonsQuery(10000);
+    const dispatch = useAppDispatch();
+    const { changeCurrentPokemon } = AppSlice.actions
+
+    const createItem = (name: string) => {
+        return (
+        <li
+            className={styles.dropdown__item}
+            key={name}
+            onClick={() => dispatch(changeCurrentPokemon(name))} >
+            <Text size={18}>
+                {name}
+            </Text>
+        </li>)
+    }
+
+    const filteredNames = (arr: string[]) => {
+        return arr.filter((name) => {
+            const length = value.length;
+            return name.slice(0, length) === value.slice(0, length)
+        })
+    }
+
+    return (
+        <ul className={`${styles.dropdown} ${className}`}>
+            { data && filteredNames(data).map(name => createItem(name)) }
+        </ul>
+    )
+}
+
+export default Dropdown

@@ -1,9 +1,13 @@
 .search {
-
     &__input {
         width: 400px;
         padding: 5px 10px;
+        margin-bottom: 10px;
         border-radius: 0.5em;
         border: 1px solid var(--black);
+    }
+
+    &__dropdown {
+        max-width: 400px;
     }
 }

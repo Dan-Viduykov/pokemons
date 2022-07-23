@@ -1,0 +1,48 @@
+.poke {
+    padding: 0 40px;
+    display: flex;
+    justify-content: space-between;
+    flex: 1 1 49%;
+    background-color: darken(#fff, 10%);
+    border-radius: 0.5em;
+
+    &__loading {
+        margin: auto;
+    }
+
+    &__title {
+
+    }
+
+    &__link {
+        padding: 5px 15px;
+        background: var(--orange);
+        border-radius: 0.5em;
+        box-shadow: 2px 2px 5px 1px rgba(#000000, 0.5);
+        color: #000;
+        text-decoration: none;
+        font-size: 20px;
+        transition: .2s;
+        
+        &:active {
+            transform: scale(1.05);
+            box-shadow: 3px 3px 4.5px 1px rgba(#000000, 0.5);
+        }
+        
+        &:hover {
+            transform: scale(1.1);
+            box-shadow: 4px 4px 4px 1px rgba(#000000, 0.5);
+        }
+    }
+    
+    &__img {
+        
+    }
+
+    &__info {
+        padding: 20px 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+}
