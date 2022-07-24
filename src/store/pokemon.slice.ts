@@ -2,10 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 
 interface AppState {
     currentPokemon: string;
+    favorites: string[];
 }
 
 const initialState: AppState = {
-    currentPokemon: ''
+    currentPokemon: '',
+    favorites: []
 }
 
 export const AppSlice = createSlice({
@@ -14,6 +16,15 @@ export const AppSlice = createSlice({
     reducers: {
         changeCurrentPokemon: (state, action: PayloadAction<string>) => {
             state.currentPokemon = action.payload;
+        },
+        addFavorite: (state, action: PayloadAction<string>) => {
+            state.favorites.push(action.payload)
+        },
+        removeFavorite: (state, action: PayloadAction<string>) => {
+            const fav = state.favorites
+            const idx = fav.findIndex(fav => fav === action.payload);
+
+            state.favorites = [...fav.slice(idx), ...fav.slice(idx+1, fav.length)]
         }
     }
 })

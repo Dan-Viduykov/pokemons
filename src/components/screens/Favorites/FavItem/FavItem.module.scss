@@ -1,0 +1,80 @@
+.card {
+    flex: 0 0 70%;
+    margin: 20px;
+    padding: 15px;
+    border-radius: 0.5em;
+    text-align: center;
+    background: rgba(#000, 0.15);
+    
+    &__title {
+        margin-bottom: 15px;
+    }
+    
+    &__img {
+        width: 150px;
+        height: 150px;
+        margin: 0 auto 20px;
+        background: gray;
+        border: 3px solid var(--green);
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    
+    &__actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    &__link {
+        padding: 5px 15px;
+        background: var(--orange);
+        border-radius: 0.5em;
+        box-shadow: 2px 2px 5px 1px rgba(#000000, 0.5);
+        color: #000;
+        text-decoration: none;
+        font-size: 20px;
+        transition: .2s;
+        
+        &:active {
+            transform: scale(1.05);
+            box-shadow: 3px 3px 4.5px 1px rgba(#000000, 0.5);
+        }
+        
+        &:hover {
+            transform: scale(1.1);
+            box-shadow: 4px 4px 4px 1px rgba(#000000, 0.5);
+        }
+    
+        &:first-child {
+            margin-right: 40px;
+        }
+    }
+    
+    &__add {
+        padding: 5px 15px;
+        background: var(--blue);
+        border: none;
+        border-radius: 0.5em;
+        box-shadow: 2px 2px 5px 1px rgba(#000000, 0.5);
+        color: gold;
+        line-height: 20px;
+        text-decoration: none;
+        font-size: 24px;
+        transition: .2s;
+        
+        &:active {
+            transform: scale(1.05);
+            box-shadow: 3px 3px 4.5px 1px rgba(#000000, 0.5);
+        }
+        
+        &:hover {
+            transform: scale(1.1);
+            box-shadow: 4px 4px 4px 1px rgba(#000000, 0.5);
+        }
+    
+        &:first-child {
+            margin-right: 40px;
+        }
+    }
+}
