@@ -1,0 +1,30 @@
+.characteristics {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    background: var(--green);
+    border-radius: 0.5em;
+
+    &__parameter {
+        margin-bottom: 10px;
+        
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__name {
+        margin-right: 20px;
+        font-weight: 700;
+    }
+
+    &__value {}
+
+    &__type {
+        margin-right: 6px;
+        padding: 6px 12px;
+        background: var(--yellow);
+        border-radius: 0.5em;
+    }
+}

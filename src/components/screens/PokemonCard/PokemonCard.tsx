@@ -1,10 +1,14 @@
 import { FC } from "react";
-import { useParams } from "react-router-dom";
+import styles from "./PokemonCard.module.scss";
+import { useNavigate, useParams } from "react-router-dom";
 import { useGetPokemonQuery, useGetPokemonDescriptionQuery } from "../../../services/pokemon.api";
-import Rating from "../../Rating";
 import Text from "../../Text";
 import Title from "../../Title";
-import styles from "./PokemonCard.module.scss";
+import Characteristics from "./Characteristics";
+import Stats from "./Stats";
+import Loading from "../../Loading";
+import Error from "../../Error";
+import { IPokemon } from "../../../models/pokemon";
 
 interface PokemonCardProps {
     className?: string;
@@ -12,41 +16,48 @@ interface PokemonCardProps {
 
 const PokemonCard: FC<PokemonCardProps> = ({ className }) => {
     const { name = '' } = useParams<{name?: string}>();
-    const { data: pokemon } = useGetPokemonQuery(name, { skip: name.length < 2 });
-    const { data: options } = useGetPokemonDescriptionQuery(name, { skip: name.length < 2 });
+    const {
+        isLoading: pokemonLoading,
+        isFetching: pokemonFetching,
+        isError: pokemonError,
+        data: pokemon
+    } = useGetPokemonQuery(name, { skip: name.length < 2 });
+    const { 
+        isError: optionsError,
+        isFetching: optionsFetching,
+        isLoading: optionsLoading,
+        data: options
+    } = useGetPokemonDescriptionQuery(name, { skip: name.length < 2 });
+    const navigate = useNavigate()
 
     const description = options?.flavor_text_entries[0].flavor_text;
     const img = pokemon?.sprites.other["official-artwork"].front_default;
     const namePokemon = pokemon?.name;
 
-    
-    return (
-        <div className={`${styles.pokemon} ${className}`}>
+
+    const content = (poke: IPokemon) => {
+        return (
+            <>
             <section className={`${styles.pokemon__section} ${styles.pokemon__img}`}>
+                <button className={styles.pokemon__back} onClick={() => navigate(-1)}>←</button>
                 <Title Tag="h2" className={styles.pokemon__title}>{namePokemon}</Title>
-                <img src={img} alt={pokemon?.name} />
+                <img src={img} alt={namePokemon} />
             </section>
             <section className={`${styles.pokemon__section}`}>
-                <Text size={20}>{description}</Text>
-                <div className={styles.pokemon__description}>
-                    <Text className={styles.pokemon__info} size={20}><span>height</span>{pokemon?.height}</Text>
-                    <Text className={styles.pokemon__info} size={20}><span>weight</span>{pokemon?.weight}</Text>
-                    <Text className={styles.pokemon__info} size={20}><span>types</span>{pokemon?.types[0].type.name}</Text>
-                </div>
-                <ul className={styles.pokemon__stats}>
-                    { pokemon?.stats.map((stat) => {
-                        return (
-                            <li
-                                key={stat.stat.url}
-                                className={styles.pokemon__stat}>
-                                <span>{stat.stat.name}</span>
-                                <Rating value={stat.base_stat} />
-                            </li>)
-                    })}
-                </ul>
+                <Text className={styles.pokemon__definition} size={18}>
+                    {optionsFetching || optionsLoading ? <Loading /> : optionsError ? <Error /> : description}
+                </Text>
+                <Characteristics className={styles.pokemon__characteristics} pokemon={poke} />
+                <Stats pokemon={poke}/>
             </section>
-        </div>
+        </>    
+        )
+    }
 
+    return (
+        <div className={`${styles.pokemon} ${className}`}>
+            {pokemonFetching || pokemonLoading ? <Loading /> : pokemonError ? <Error /> : content(pokemon!)}
+        </div>        
     )
 }
 

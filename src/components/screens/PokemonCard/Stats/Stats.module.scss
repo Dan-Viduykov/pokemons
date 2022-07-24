@@ -1,0 +1,21 @@
+.stats {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    background: var(--green);
+    border-radius: 0.5em;
+
+    &__item {
+        margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+    
+        span {
+            margin-right: 20px;
+            font-size: 20px;
+            font-family: var(--font-met);
+            font-weight: 700;
+        }
+    }
+}
