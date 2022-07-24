@@ -14,10 +14,16 @@
         width: 150px;
         height: 150px;
         margin: 0 auto 20px;
+        display: flex;
         background: gray;
         border: 3px solid var(--green);
         border-radius: 50%;
         overflow: hidden;
+
+        img {
+            margin: auto;
+            width: 95%;
+        }
     }
     
     &__actions {

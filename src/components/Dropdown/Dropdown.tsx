@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { useAppDispatch } from "../../hooks/redux";
-import { useGetPokemonsQuery } from "../../services/pokemon.api";
+import { useGetPokemonsNameQuery } from "../../services/pokemon.api";
 import { AppSlice } from "../../store/pokemon.slice";
 import Empty from "../Empty";
 import Text from "../Text";
@@ -12,7 +12,7 @@ interface DropdownProps {
 }
 
 const Dropdown: FC<DropdownProps> = ({ className, value }) => {
-    const { data } = useGetPokemonsQuery(10000);
+    const { data } = useGetPokemonsNameQuery(10000);
     const dispatch = useAppDispatch();
     const { changeCurrentPokemon } = AppSlice.actions
 
