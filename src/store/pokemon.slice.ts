@@ -12,12 +12,7 @@ export interface IFav {
 
 const initialState: AppState = {
     currentPokemon: '',
-    favorites: [
-        {
-            name: 'bulbasaur',
-            id: 1
-        },
-    ]
+    favorites: []
 }
 
 export const AppSlice = createSlice({
