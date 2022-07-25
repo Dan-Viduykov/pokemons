@@ -28,7 +28,7 @@ export const AppSlice = createSlice({
         removeFavorite: (state, action: PayloadAction<string>) => {
             const fav = state.favorites
             const idx = fav.findIndex(fav => fav.name === action.payload);
-
+            
             state.favorites = [...fav.slice(0, idx), ...fav.slice(idx + 1)]
         }
     }

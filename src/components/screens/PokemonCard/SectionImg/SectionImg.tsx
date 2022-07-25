@@ -1,6 +1,6 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAppDispatch } from "../../../../hooks/redux";
+import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
 import { IPokemon } from "../../../../models/pokemon";
 import { AppSlice } from "../../../../store/pokemon.slice";
 import Title from "../../../Title";
@@ -14,11 +14,24 @@ interface SectionImgProps {
 const SectionImg: FC<SectionImgProps> = ({ className, pokemon }) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const { addFavorite } = AppSlice.actions
+    const { addFavorite, removeFavorite } = AppSlice.actions;
+    const { favorites } = useAppSelector(state => state.App)
 
     const img = pokemon?.sprites.other["official-artwork"].front_default;
     const namePokemon = pokemon?.name;
     const id = pokemon?.id;
+
+    const [ isFav, setIsFav ] = useState(favorites.includes({name: namePokemon, id: id}))
+
+    const handleClickFav = () => {
+        setIsFav(!isFav);
+
+        if (isFav) {
+            dispatch(removeFavorite(namePokemon))
+        } else {
+            dispatch(addFavorite({name: namePokemon, id}));
+        }
+    }
 
     return (
         <section className={`${styles.section} ${className}`}>
@@ -34,8 +47,8 @@ const SectionImg: FC<SectionImgProps> = ({ className, pokemon }) => {
             </Title>
             <button
                 className={styles.section__fav}
-                style={{ color: `gold` }}
-                onClick={() => dispatch(addFavorite({name: namePokemon, id}))}>
+                style={{ color: `${isFav ? 'gold' : '#000'}` }}
+                onClick={() => handleClickFav()}>
                 ★
             </button>
             <img
