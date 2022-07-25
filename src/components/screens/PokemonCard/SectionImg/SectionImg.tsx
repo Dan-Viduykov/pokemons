@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../../hooks/redux";
 import { IPokemon } from "../../../../models/pokemon";
@@ -21,16 +21,16 @@ const SectionImg: FC<SectionImgProps> = ({ className, pokemon }) => {
     const namePokemon = pokemon?.name;
     const id = pokemon?.id;
 
-    const [ isFav, setIsFav ] = useState(favorites.includes({name: namePokemon, id: id}))
+    const [ isFav, setIsFav ] = useState(favorites.find(fav => fav.id === id) ? true : false)
 
     const handleClickFav = () => {
-        setIsFav(!isFav);
-
         if (isFav) {
             dispatch(removeFavorite(namePokemon))
         } else {
-            dispatch(addFavorite({name: namePokemon, id}));
+            dispatch(addFavorite({name: namePokemon, id}))
         }
+
+        setIsFav(!isFav)
     }
 
     return (
