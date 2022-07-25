@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
-import { IFav } from "../../../../store/pokemon.slice";
+import { useAppDispatch } from "../../../../hooks/redux";
+import { AppSlice, IFav } from "../../../../store/pokemon.slice";
 import Title from "../../../Title";
 import styles from "./FavItem.module.scss";
 
@@ -10,6 +11,8 @@ interface FavItemProps {
 }
 
 const FavItem: FC<FavItemProps> = ({ className, fav }) => {
+    const dispatch = useAppDispatch();
+    const { removeFavorite } = AppSlice.actions;
 
     return (
         <div className={`${styles.card} ${className}`}>
@@ -21,7 +24,11 @@ const FavItem: FC<FavItemProps> = ({ className, fav }) => {
                 <Link className={styles.card__link} to={`/pokemon/${fav.name}`}>
                     Card
                 </Link>
-                <button className={styles.card__add}>★</button>
+                <button
+                    className={styles.card__add}
+                    onClick={() => dispatch(removeFavorite(fav.name))}>
+                    ★
+                </button>
             </div>
         </div>
     )
