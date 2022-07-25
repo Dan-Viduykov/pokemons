@@ -2,7 +2,7 @@
   "name": "pokemons",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://dan-viduykov.github.io/pokemons",
+  "homepage": "https://pokedex-p8tr5zeit-dan-viduykov.vercel.app/",
   "dependencies": {
     "@ngrx/store-devtools": "^14.0.2",
     "@reduxjs/toolkit": "^1.8.3",
