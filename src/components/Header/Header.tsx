@@ -11,7 +11,7 @@ const Header: FC = () => {
             <Container className={styles.header__container}>
                 <Title Tag="h1" className={styles.header__title}>Pokedex</Title>
                 <nav className={styles.header__nav}>
-                    <Link className={styles.header__link} to={"/pokemons"}><Text size={20}>Home</Text></Link>
+                    <Link className={styles.header__link} to={"/"}><Text size={20}>Home</Text></Link>
                     <Link className={styles.header__link} to={"/favorites"}><Text size={20}>Favorites</Text></Link>
                 </nav>
             </Container>
