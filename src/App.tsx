@@ -6,7 +6,7 @@ import PokemonPage from "./pages/PokemonPage";
 function App() {
   return (
     <Routes>
-      <Route path="/pokemons" element={<HomePage />} />
+      <Route path="/" element={<HomePage />} />
       <Route path="/pokemon/:name" element={<PokemonPage />} />
       <Route path="/favorites" element={<FavoritesPage />} />
     </Routes>
