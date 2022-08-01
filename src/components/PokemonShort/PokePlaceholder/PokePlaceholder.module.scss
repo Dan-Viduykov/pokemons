@@ -1,0 +1,11 @@
+.placeholder {
+    width: 100%;
+    background: inherit;
+    display: flex;
+
+    &__img {
+        width: 60%;
+        margin: 0 auto;
+        background-color: darken(#fff, 10%);
+    }
+}
