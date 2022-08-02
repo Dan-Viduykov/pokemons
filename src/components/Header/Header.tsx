@@ -3,9 +3,13 @@ import { Link } from "react-router-dom";
 import Container from "../Container";
 import Text from "../Text";
 import Title from "../Title/Title";
+import Burger from "./Burger";
 import styles from "./Header.module.scss";
 
 const Header: FC = () => {
+
+    const burger = window.innerWidth < 720 ? <Burger /> : null;
+
     return (
         <header className={styles.header}>
             <Container className={styles.header__container}>
@@ -16,6 +20,7 @@ const Header: FC = () => {
                     <Link className={styles.header__link} to={"/"}><Text size={20}>Home</Text></Link>
                     <Link className={styles.header__link} to={"/favorites"}><Text size={20}>Favorites</Text></Link>
                 </nav>
+                { burger }
             </Container>
         </header>
     )
