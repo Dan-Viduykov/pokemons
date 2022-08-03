@@ -1,17 +1,19 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import styles from "./Burger.module.scss";
 
-const Burger: FC = () => {
-    const [ isActive, setIsActive ] = useState(false)
+interface BurgerProps {
+    className?: string;
+    active: boolean
+    onClick?: () => void
+}
 
-    const handleClick = () => setIsActive(!isActive)
-    
+const Burger: FC<BurgerProps> = ({ className, onClick, active }) => {    
     return (
-        <div className={styles.burger}>
+        <div className={`${styles.burger} ${className}`}>
             <button
-                className={`${styles.burger__button} ${isActive && styles.burger__button_active}`}
+                className={`${styles.burger__button} ${active && styles.burger__button_active}`}
                 id="menu07"
-                onClick={handleClick} >
+                onClick={onClick} >
                 <span className={styles.burger__line}></span>
                 <span className={styles.burger__line}></span>
                 <span className={styles.burger__line}></span>
